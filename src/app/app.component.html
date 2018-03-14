@@ -1,0 +1,28 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" class="app-sidenav"  fxLayout="column" style="height: 100vh">
+    <mat-nav-list fxFlex="100%">
+      <mat-list-item *ngFor="let categories of categoryList" (click)="filterCategory = categories.title">{{categories.title}}</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary" (click)="filterCategory=''">
+    <button  mat-icon-button  class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
+    Angular 5 Test App
+  </mat-toolbar>
+  <mat-card style="height: 100vh">
+  <mat-expansion-panel #cards *ngFor="let courses of coursesList | filterBy: filterCategory">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{courses.title}}
+      </mat-panel-title>
+      <mat-panel-description>
+      {{courses.lectures[0].title}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{courses.lectures[0].description }}</p>
+  </mat-expansion-panel>
+    {{courses}}
+  </mat-card>
+
+</mat-sidenav-container>
